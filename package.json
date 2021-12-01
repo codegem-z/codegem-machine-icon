@@ -1,6 +1,6 @@
 {
   "name": "codegem-machine-icon",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "main": "build/mod.js",
   "license": "MIT",
   "registry": "",
@@ -25,7 +25,7 @@
     "babel-jest": "^27.2.3",
     "eslint": "^7.32.0",
     "jest": "^27.2.3",
-    "renew-it": "^1.4.8",
+    "renew-it": "1.4.10-alpha.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "tsm": "^2.2.1",
