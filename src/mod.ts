@@ -1,16 +1,16 @@
-import { FileInfoType } from './type';
+import { FileInfoType } from './type.js';
 import path from 'path';
 import fs from 'fs';
 import handlebars from 'handlebars';
 import _ from 'lodash';
-import { importDir } from './utils';
+import { importDir } from './utils.js';
 
 const template = fs.readFileSync(
   path.join(__dirname, './template/taro.handlebars'),
   'utf-8',
 );
 
-export default function machine(
+function machine(
   source: any[],
   output: string,
 ): { pathname: string; code: string }[] | [] {
@@ -41,3 +41,13 @@ export default function machine(
   });
   return result;
 }
+
+const generateIcon = (
+  output: string
+): (source: any[]) => { pathname: string; code: string }[] {
+  return (source: any[]) => {
+    return machine(source, output);
+  };
+}
+
+export default generateIcon
