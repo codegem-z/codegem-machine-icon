@@ -33,7 +33,10 @@ function machine(
       const { name: icon, base: iconFile, path: filePath } = file;
       const iconComponent = _.upperFirst(_.camelCase(icon));
 
-      const targetPath = path.resolve(output, iconFile);
+      const targetPath = path.resolve(
+        output,
+        iconFile.replace(file.ext, '.tsx'),
+      );
       const importPath = importDir(targetPath, filePath);
 
       // TODO: icon 文件名要做兼容，兼容 -，_ 大小写的情况
@@ -61,22 +64,22 @@ const generateIcon = (
 
 export default generateIcon;
 
-// debug
-// machine(
-//   [
-//     {
-//       files: [
-//         '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
-//       ],
-//       filesInfo: [
-//         {
-//           path: '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
-//           ...path.parse(
-//             '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
-//           ),
-//         },
-//       ],
-//     },
-//   ],
-//   './example/generated',
-// );
+// debug;
+machine(
+  [
+    {
+      files: [
+        '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+      ],
+      filesInfo: [
+        {
+          path: '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+          ...path.parse(
+            '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+          ),
+        },
+      ],
+    },
+  ],
+  './example/generated',
+);
