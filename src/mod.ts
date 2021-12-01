@@ -44,6 +44,7 @@ function machine(
       result.push({ pathname: targetPath, code });
     }
   });
+  console.log('debug machineIcon', result);
   return result;
 }
 
