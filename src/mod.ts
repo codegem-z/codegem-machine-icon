@@ -26,14 +26,17 @@ function machine(
   const data = source[0] as { files: string[]; filesInfo: FileInfoType[] };
   const result: { pathname: string; code: string }[] = [];
   data.filesInfo.map((file) => {
+    console.log('debug', file);
     const isValidPicture =
-      /png|jpeg|jpg/.test(path.extname(file.ext)) && !/@[23]x/.test(file.name);
+      /png|jpeg|jpg/.test(file.ext) && !/@[23]x/.test(file.name);
     if (isValidPicture) {
       const { name: icon, base: iconFile, path: filePath } = file;
       const iconComponent = _.upperFirst(_.camelCase(icon));
 
       const targetPath = path.resolve(output, iconFile);
       const importPath = importDir(targetPath, filePath);
+
+      // TODO: icon 文件名要做兼容，兼容 -，_ 大小写的情况
 
       const code = handlebars.compile(template)({
         icon,
@@ -57,3 +60,23 @@ const generateIcon = (
 };
 
 export default generateIcon;
+
+// debug
+// machine(
+//   [
+//     {
+//       files: [
+//         '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+//       ],
+//       filesInfo: [
+//         {
+//           path: '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+//           ...path.parse(
+//             '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+//           ),
+//         },
+//       ],
+//     },
+//   ],
+//   './example/generated',
+// );
