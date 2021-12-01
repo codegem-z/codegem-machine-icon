@@ -11,8 +11,13 @@
   "type": "module",
   "scripts": {
     "build": "rimraf build && tsc && cpy './template/*' '../build' --cwd=src --parents ",
-    "jest": "yarn build && jest --coverage"
+    "jest": "yarn build && jest --coverage",
+    "tslint": "tsc --noEmit --pretty"
   },
+  "pre-commit": [
+    "tslint",
+    "jest"
+  ],
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
@@ -25,6 +30,7 @@
     "babel-jest": "^27.2.3",
     "eslint": "^7.32.0",
     "jest": "^27.2.3",
+    "pre-commit": "^1.2.2",
     "renew-it": "1.4.10-alpha.1",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",

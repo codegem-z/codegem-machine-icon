@@ -43,11 +43,11 @@ function machine(
 }
 
 const generateIcon = (
-  output: string
-): (source: any[]) => { pathname: string; code: string }[] {
+  output: string,
+): ((source: any[]) => { pathname: string; code: string }[]) => {
   return (source: any[]) => {
     return machine(source, output);
   };
-}
+};
 
-export default generateIcon
+export default generateIcon;
