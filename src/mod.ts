@@ -5,6 +5,7 @@ import handlebars from 'handlebars';
 import _ from 'lodash';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { Log } from 'codegem-tools';
 import { importDir } from './utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,7 +19,9 @@ const template = fs.readFileSync(
 function machine(
   source: any[],
   output: string,
+  ctx: { debug: boolean },
 ): { pathname: string; code: string }[] | [] {
+  const log = new Log(ctx);
   if (source.length === 0) {
     return [];
   }
@@ -26,7 +29,7 @@ function machine(
   const data = source[0] as { files: string[]; filesInfo: FileInfoType[] };
   const result: { pathname: string; code: string }[] = [];
   data.filesInfo.map((file) => {
-    console.log('debug', file);
+    log.debug('debug', file);
     const isValidPicture =
       /png|jpeg|jpg/.test(file.ext) && !/@[23]x/.test(file.name);
     if (isValidPicture) {
@@ -50,15 +53,18 @@ function machine(
       result.push({ pathname: targetPath, code });
     }
   });
-  console.log('debug machineIcon', result);
+  log.debug('debug machineIcon', result);
   return result;
 }
 
 const generateIcon = (
   output: string,
-): ((source: any[]) => { pathname: string; code: string }[]) => {
-  return (source: any[]) => {
-    return machine(source, output);
+): ((
+  source: any[],
+  ctx: { debug: boolean },
+) => { pathname: string; code: string }[]) => {
+  return (source, ctx) => {
+    return machine(source, output, ctx);
   };
 };
 
@@ -82,4 +88,5 @@ machine(
     },
   ],
   './example/generated',
+  { debug: true },
 );
