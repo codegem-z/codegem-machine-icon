@@ -71,22 +71,22 @@ const generateIcon = (
 export default generateIcon;
 
 // debug;
-machine(
-  [
-    {
-      files: [
-        '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
-      ],
-      filesInfo: [
-        {
-          path: '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
-          ...path.parse(
-            '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
-          ),
-        },
-      ],
-    },
-  ],
-  './example/generated',
-  { debug: true },
-);
+// machine(
+//   [
+//     {
+//       files: [
+//         '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+//       ],
+//       filesInfo: [
+//         {
+//           path: '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+//           ...path.parse(
+//             '/Users/ben/Documents/workspace/project/codegem-z/codegem-example/example/icon/source/test.png',
+//           ),
+//         },
+//       ],
+//     },
+//   ],
+//   './example/generated',
+//   { debug: true },
+// );
